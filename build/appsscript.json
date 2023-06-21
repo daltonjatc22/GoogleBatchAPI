@@ -1,6 +1,13 @@
 {
   "timeZone": "America/New_York",
   "dependencies": {
+    "libraries": [
+      {
+        "userSymbol": "BatchRequest",
+        "version": "10",
+        "libraryId": "1HLv6tWz0oXFOJHerBTP8HsNmhpRqssijJatC92bv9Ym6HSN69_UuzcDk"
+      }
+    ]
   },
   "exceptionLogging": "STACKDRIVER",
   "runtimeVersion": "V8"
