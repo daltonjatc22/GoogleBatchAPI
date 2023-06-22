@@ -2,7 +2,7 @@ namespace BatchRequestQueue {
   export class BatchRequestManager {
     private requestGenerators: BatchRequestGenerator[] = [];
 
-    private static cachedBatchPaths: { [key: string]: string };
+    private static cachedBatchPaths: { [key: string]: string } = {};
     private batchPath: string;
 
     constructor(batchPath: string) {
@@ -12,7 +12,7 @@ namespace BatchRequestQueue {
         // Fetching Path from Google
         BatchRequestManager.cachedBatchPaths[batchPath] = BatchRequest.getBatchPath(batchPath); // This submits a sync GET request to google(Very Slow) caching results for speed up
       }
-
+      
       this.batchPath = BatchRequestManager.cachedBatchPaths[batchPath];
     }
 

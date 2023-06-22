@@ -34,7 +34,7 @@ namespace BatchRequestQueue {
      */
     export function SubmitRequests(){
         let batchPaths = Object.keys(requestManagers);
-        for (let priority = 0; priority < greatestPriority; priority++) {
+        for (let priority = 0; priority <= greatestPriority; priority++) {
             for(let pathIndex = 0; pathIndex < batchPaths.length; pathIndex++){
                 const batchPath = batchPaths[pathIndex];
                 const requestManager = requestManagers[batchPath][priority];
@@ -65,10 +65,12 @@ namespace BatchRequestQueue {
      */
     function fillQueue(requestPath: string, priority: number){
         // Creating BatchRequestManager for following priority's up to priority.
-        if(requestManagers[requestPath].length !== priority) Log.warn("Attempted to create a Request With a priority greater than 1 + (the greatest Priority of all descendants).\n Please insure all requests are being sent with a Priority of 1 + (the greatest Priority of all descendants)");
+        if(!(requestManagers[requestPath].length < priority)) return;
 
-        for (let i = requestManagers[requestPath].length-1; i < priority; i++) {
+        Log.warn("Attempted to create a Request With a priority greater than 1 + (the greatest Priority of all descendants).\n Please insure all requests are being sent with a Priority of 1 + (the greatest Priority of all descendants)");
+        for (let i = requestManagers[requestPath].length -1; i < priority; i++) {
             requestManagers[requestPath].push(new BatchRequestManager(requestPath));
         }
+        Calendar
     }
 }
