@@ -31,7 +31,7 @@ namespace BatchRequestQueue {
     public async SubmitRequests() {
       let request = this.GenerateRequests();
       if (request.requests.length === 0) {
-        console.warn(
+        Log.warn(
           "Batch Request Manager attempted to submit requests without any requests. Please insure requests aren't being submitted with a RequestOrderIndex greater than 1+(the highest RequestOrderIndex of all dependencies)."
         );
         return;
@@ -55,7 +55,7 @@ namespace BatchRequestQueue {
 
       return multipartRequest;
     }
-    
+
     /**
      * GenerateRequests
      *
