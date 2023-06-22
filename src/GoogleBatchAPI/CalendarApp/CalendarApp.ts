@@ -7,7 +7,7 @@ namespace BatchCalendarApp {
         // color: boolean;
         // selected: boolean;
       };
-    function createCalendar( name: string, options?: CalendarCreationOptionsType): BatchCalendar {
+    export function createCalendar( name: string, options?: CalendarCreationOptionsType): BatchCalendar {
         let Generator  = new Calendar.Generators.CalendarCreationGenerator(name, options);
 
         BatchRequestQueue.QueueRequest("calendar", Generator);

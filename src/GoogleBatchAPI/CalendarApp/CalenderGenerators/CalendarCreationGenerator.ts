@@ -44,7 +44,7 @@ namespace BatchCalendarApp.Calendar.Generators{
             });
         }
 
-        public GetRequestOrderIndex(): number {
+        GetRequestPriority(): number { //TODO Check if this Calendar is Dependent on another Request.
             return 0;
         }
 

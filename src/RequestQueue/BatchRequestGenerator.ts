@@ -2,7 +2,7 @@ namespace BatchRequestQueue {
     export interface BatchRequestGenerator {
         UpdateFromParent(): void;
 
-        GetRequestOrderIndex(): number;
+        GetRequestPriority(): number;
         
         GetRequest(): BatchRequest.RequestType;
 

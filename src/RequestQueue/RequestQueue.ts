@@ -19,7 +19,8 @@ namespace BatchRequestQueue {
      * @param requestGenerator 
      * @param priority Priority depicts the earliest that a request can be sent. For example if a request has a priority of 1 it will wait until all requests with a priority of 0 to complete before it's submitted.
      */
-    export function QueueRequest(requestPath: string, requestGenerator: BatchRequestGenerator, priority: number){
+    export function QueueRequest(requestPath: string, requestGenerator: BatchRequestGenerator){
+        let priority = requestGenerator.GetRequestPriority();
         // Tracking Priority for submitting requests
         greatestPriority = Math.max(greatestPriority, priority);
 
@@ -65,12 +66,11 @@ namespace BatchRequestQueue {
      */
     function fillQueue(requestPath: string, priority: number){
         // Creating BatchRequestManager for following priority's up to priority.
-        if(!(requestManagers[requestPath].length < priority)) return;
-
-        Log.warn("Attempted to create a Request With a priority greater than 1 + (the greatest Priority of all descendants).\n Please insure all requests are being sent with a Priority of 1 + (the greatest Priority of all descendants)");
+        if(requestManagers[requestPath].length-1 > priority) return;
+        if(requestManagers[requestPath].length !== priority) Log.warn("Attempted to create a Request With a priority greater than 1 + (the greatest Priority of all descendants).\n Please insure all requests are being sent with a Priority of 1 + (the greatest Priority of all descendants)");
+        
         for (let i = requestManagers[requestPath].length -1; i < priority; i++) {
             requestManagers[requestPath].push(new BatchRequestManager(requestPath));
         }
-        Calendar
     }
 }

@@ -1,9 +1,10 @@
 namespace BatchCalendarApp {
+    /*
     function errorIfNull(){
         if(!this.value){
             if(this.priority) throw new Error(`Unable to get value this property has a priority of ${this.priority}, please wait until after requests of priority ${this.priority} have been submitted`)
         }
-    }
+    }*/
 
     export class BatchCalendar {
         public _name?: string;
