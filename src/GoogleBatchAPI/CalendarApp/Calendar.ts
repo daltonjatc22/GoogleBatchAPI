@@ -1,5 +1,20 @@
 namespace BatchCalendarApp {
+    function errorIfNull(){
+        if(!this.value){
+            if(this.priority) throw new Error(`Unable to get value this property has a priority of ${this.priority}, please wait until after requests of priority ${this.priority} have been submitted`)
+        }
+    }
+
     export class BatchCalendar {
+        public _name?: string;
+        public _location?: string;
+        public _summary?: string;
+        public _timeZone?: string;
+        public _color?: boolean;
+        public _selected?: boolean;
+        constructor(){
+
+        }
     //createAllDayEvent(title: string, date: GoogleAppsScript.Base.Date): GoogleAppsScript.Calendar.CalendarEvent;
     //createAllDayEvent(title: string, startDate: GoogleAppsScript.Base.Date, endDate: GoogleAppsScript.Base.Date): GoogleAppsScript.Calendar.CalendarEvent;
     //createAllDayEvent(title: string, startDate: GoogleAppsScript.Base.Date, endDate: GoogleAppsScript.Base.Date, options: { [key: string]: any }): GoogleAppsScript.Calendar.CalendarEvent;

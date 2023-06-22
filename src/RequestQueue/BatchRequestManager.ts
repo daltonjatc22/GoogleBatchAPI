@@ -5,6 +5,8 @@ namespace BatchRequestQueue {
     private static cachedBatchPaths: { [key: string]: string } = {};
     private batchPath: string;
 
+    private static oAuthToken = ScriptApp.getOAuthToken();
+
     constructor(batchPath: string) {
 
       // Checking if batchPath has been found already
@@ -65,7 +67,7 @@ namespace BatchRequestQueue {
       let request: BatchRequest.BatchRequestType = {
         batchPath: this.batchPath,
         requests: [],
-        accessToken: ScriptApp.getOAuthToken(),
+        accessToken: BatchRequestManager.oAuthToken,
       };
 
       for (let i = 0; i < this.requestGenerators.length; i++) {
