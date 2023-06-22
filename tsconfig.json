@@ -3,6 +3,7 @@
         "outDir": "./build",
         "types": ["./node_modules/@types/google-apps-script", "./batch-requests"],
         "skipLibCheck": true,
-        "strict": true
+        "strict": true,
+        "rootDir": "./src"
     }
 }
