@@ -1,5 +1,6 @@
 function test(){
     BatchRequestQueue.QueueRequest("drive", new requestGenerator(), 2);
+    BatchRequestQueue.SubmitRequests();
 }
 
 class requestGenerator implements BatchRequestQueue.BatchRequestGenerator{

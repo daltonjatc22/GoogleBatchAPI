@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "target": "ES2019",
         "outDir": "./build",
         "types": ["./node_modules/@types/google-apps-script", "./batch-requests"],
         "skipLibCheck": true,
