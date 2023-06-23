@@ -3,9 +3,9 @@
 namespace BatchCalendarApp {
     
     export type CalendarCreationOptionsType = {
-        location: string | BatchRequestQueue.RequestGenerator.QueuedProperty<string>;
-        summary: string | BatchRequestQueue.RequestGenerator.QueuedProperty<string>;
-        timeZone: string | BatchRequestQueue.RequestGenerator.QueuedProperty<string>;
+        location?: string | BatchRequestQueue.RequestGenerator.QueuedProperty<string>;
+        summary?: string | BatchRequestQueue.RequestGenerator.QueuedProperty<string>;
+        timeZone?: string | BatchRequestQueue.RequestGenerator.QueuedProperty<string>;
         // Removed the color and selected aspects of calendar as they relate to Calendar List Resource thus taking two requests to complete.
         // color: boolean;
         // selected: boolean;
