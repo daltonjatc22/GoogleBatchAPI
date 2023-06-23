@@ -56,10 +56,10 @@ namespace BatchRequestQueue.RequestGenerator {
          * Note: This function is recursive as JSON.stringify will call children's toJSON function
          * @returns A JSON string defining this object;
          */
-        public toJSON(): string {
+        public toJSON(): any {
             this.throwErrorIfNotAvailable();
 
-            if(this._value) return JSON.stringify(this._value);
+            if(this._value) return this._value;
 
             throw new Error("value is unset");
         }

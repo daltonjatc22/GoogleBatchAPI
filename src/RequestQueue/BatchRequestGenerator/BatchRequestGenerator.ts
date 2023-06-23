@@ -37,7 +37,7 @@ namespace BatchRequestQueue {
             return param.valueOf();
         }
 
-        protected extractPriority(param: primitive | RequestGenerator.QueuedProperty<any>, ignore?: boolean): any {
+        protected extractPriority(param?: primitive | RequestGenerator.QueuedProperty<any>, ignore?: boolean): any {
             if(param instanceof RequestGenerator.QueuedProperty && !ignore){
                 this.maxDependentPriority = Math.max(this.maxDependentPriority, param.getPriority());
             }
