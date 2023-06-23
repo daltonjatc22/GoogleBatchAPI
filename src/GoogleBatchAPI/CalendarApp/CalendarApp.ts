@@ -20,6 +20,13 @@ namespace BatchCalendarApp {
     //function getAllCalendars(): Calendar[];
     //function getAllOwnedCalendars(): Calendar[];
 
+
+    function getCalendarById(id: string): BatchCalendar | null{
+
+        
+        return null;
+    }
+
     /**
     function getCalendarById(id: string): Calendar | null;
     function getCalendarsByName(name: string): Calendar[] | null;
