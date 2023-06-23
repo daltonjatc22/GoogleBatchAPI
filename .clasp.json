@@ -1,1 +1,28 @@
-{"scriptId":"10wAgWz94NCaDcZd4e022vLNt00L1MIrn-Ci7hEIqUC2rv2XeYtAl4vkC","rootDir":"./build","parentId":["19cLrHjc2zk-iZNlIn7jNlb-icKI7B09luZt5240KIVg"]}
+{
+    "scriptId":"10wAgWz94NCaDcZd4e022vLNt00L1MIrn-Ci7hEIqUC2rv2XeYtAl4vkC",
+    "rootDir":"./build",
+    "parentId":["19cLrHjc2zk-iZNlIn7jNlb-icKI7B09luZt5240KIVg"],
+    "filePushOrder": [
+        "build/test.js",
+        
+        "BatchRequestUtils",
+            "build/BatchRequestUtils/Logger.js",
+            "build/BatchRequestUtils/PromisedPriority.js",
+
+        "RequestQueue",
+            "build/RequestQueue/BatchRequestManager.js",
+            "build/RequestQueue/RequestQueue.js",
+
+            "BatchRequestGenerator",
+                "build/RequestQueue/BatchRequestGenerator/QueuedProperty.js",    
+                "build/RequestQueue/BatchRequestGenerator/BatchRequestGenerator.js",
+        
+        "GoogleBatchAPI",
+            "CalendarApp",
+                "build/GoogleBatchAPI/CalendarApp/Calendar.js",
+                "build/GoogleBatchAPI/CalendarApp/CalendarApp.js",
+
+                "CalenderGenerators",
+                    "build/GoogleBatchAPI/CalendarApp/CalenderGenerators/CalendarCreationGenerator.js"
+    ]
+}
