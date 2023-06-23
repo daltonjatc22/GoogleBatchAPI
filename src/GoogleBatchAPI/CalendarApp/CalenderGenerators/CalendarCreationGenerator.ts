@@ -1,13 +1,9 @@
 namespace BatchCalendarApp.Calendar.Generators{
-    export class CalendarCreationGenerator implements BatchRequestQueue.BatchRequestGenerator {
-        private _name: string;
-        private _location?: string;
-        private _summary?: string;
-        private _timeZone?: string;
-
-        private _promise: Promise<unknown>;
-        private _promiseResolve!: (value: unknown) => void;
-        private _promiseReject!: (value: unknown) => void;
+    export class CalendarCreationGenerator extends BatchRequestQueue.BatchRequestGenerator {
+        private _name: string | BatchRequestQueue.RequestGenerator.QueuedProperty<string>;
+        private _location?: string | BatchRequestQueue.RequestGenerator.QueuedProperty<string>;
+        private _summary?: string | BatchRequestQueue.RequestGenerator.QueuedProperty<string>;
+        private _timeZone?: string | BatchRequestQueue.RequestGenerator.QueuedProperty<string>;
 
         private _batchCalendar: BatchCalendarApp.BatchCalendar;
         
@@ -16,17 +12,18 @@ namespace BatchCalendarApp.Calendar.Generators{
         //private _selected?: boolean;
 
         constructor(name: string, options?: BatchCalendarApp.CalendarCreationOptionsType){
-            this._name = name;
+            super();
+
+            this._name = this.extractPriority(name);
             
             // Create Batch Calendar Object and update it with known Values
             this._batchCalendar = new BatchCalendar();
-            this._batchCalendar._name = name;
+            this._batchCalendar._name = this._name;
             
-
             if(options) {
-                this._location = options.location;
-                this._summary = options.summary;
-                this._timeZone = options.timeZone;
+                this._location = this.extractPriority(options.location);
+                this._summary = this.extractPriority(options.summary);
+                this._timeZone = this.extractPriority(options.timeZone);
                 // Removed the color and selected aspects of calendar as they relate to Calendar List Resource thus taking two requests to complete.
                 //this._color = options.color;
                 //this._selected = options.selected;
@@ -36,19 +33,14 @@ namespace BatchCalendarApp.Calendar.Generators{
                 this._batchCalendar._summary = options.summary;
                 this._batchCalendar._timeZone = options.timeZone;
             }
-
-            // Create Promise
-            this._promise = new Promise<unknown>((resolve, reject) => {
-                this._promiseResolve = resolve;
-                this._promiseReject = reject;
-            });
         }
 
-        GetRequestPriority(): number { //TODO Check if this Calendar is Dependent on another Request.
-            return 0;
+        public GetCalendar(): BatchCalendarApp.BatchCalendar {
+            return this._batchCalendar;
         }
 
-        public GetRequest(): BatchRequest.RequestType { //TODO THIS
+
+        public override GetRequest(): BatchRequest.RequestType { //TODO THIS
             let request = {
                 method: "POST",
                 endpoint: "https://www.googleapis.com/calendar/v3/calendars",
@@ -62,21 +54,5 @@ namespace BatchCalendarApp.Calendar.Generators{
 
             return request;
         }
-        public GetResponsePromise(): Promise<any> {
-            return this._promise;
-        }
-        public ResolvePostRequestPromise(value: any): void {
-            this._promiseResolve(value);
-        }
-        public RejectPostRequestPromise(reason: any): void {
-            this._promiseReject(reason);
-        }
-
-        public UpdateFromParent(): void {}
-
-        public GetCalendar(): BatchCalendarApp.BatchCalendar {
-            return this._batchCalendar;
-        }
-        
     }
 }

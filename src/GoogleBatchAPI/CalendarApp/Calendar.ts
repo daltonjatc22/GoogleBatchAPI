@@ -7,12 +7,12 @@ namespace BatchCalendarApp {
     }*/
 
     export class BatchCalendar {
-        public _name?: string;
-        public _location?: string;
-        public _summary?: string;
-        public _timeZone?: string;
-        public _color?: boolean;
-        public _selected?: boolean;
+        public _name?: string | BatchRequestQueue.RequestGenerator.QueuedProperty<string>;
+        public _location?: string | BatchRequestQueue.RequestGenerator.QueuedProperty<string>;
+        public _summary?: string | BatchRequestQueue.RequestGenerator.QueuedProperty<string>;
+        public _timeZone?: string | BatchRequestQueue.RequestGenerator.QueuedProperty<string>;
+        public _color?: string | BatchRequestQueue.RequestGenerator.QueuedProperty<string>;
+        public _selected?: boolean | BatchRequestQueue.RequestGenerator.QueuedProperty<boolean>;
         constructor(){
 
         }

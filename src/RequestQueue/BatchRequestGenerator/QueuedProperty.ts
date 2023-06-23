@@ -63,9 +63,12 @@ namespace BatchRequestQueue.RequestGenerator {
             throw new Error("value is unset");
         }
 
+        public getPriority(): number{
+            return this._priority;
+        }
+
         private throwErrorIfNotAvailable(){
             if(!this._hasValue) throw new Error("Requested value is not yet available. If complex use is required please use the promise functionality of QueuedProperty(QueuedProperty.then())");
         }
-        
     }
 }
