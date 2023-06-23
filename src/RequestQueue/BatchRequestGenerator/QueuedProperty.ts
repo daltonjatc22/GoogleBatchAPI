@@ -11,6 +11,7 @@ namespace BatchRequestQueue.RequestGenerator {
             if(value) {
                 this._hasValue = true;
                 this._value = value;
+                this.ResolvePostRequestPromise(value);
             }
         }
 
