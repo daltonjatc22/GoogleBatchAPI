@@ -2,10 +2,14 @@ namespace BatchRequestQueue {
     type primitive = string | number | boolean | null;
 
     export class BatchRequestGenerator extends BatchRequestUtils.PromisedPriority<any> {
-        protected maxDependentPriority = 0;
+        protected maxDependentPriority = -1;
 
         constructor(){
             super();
+
+            this._promise = this._promise.then((response) => {
+                this.updateDependencies(response);
+            })
         }
 
         public UpdateFromParent(){}
@@ -14,16 +18,8 @@ namespace BatchRequestQueue {
             return this.maxDependentPriority + 1;
         }
 
-        public GetRequest(): BatchRequest.RequestType {
+        public GetRequest(): BatchRequest.RequestType | null {
             throw new Error("Not Implemented"); // if this function isn't over-written it will throw an error before submitting.
-        }
-
-        public GetUpdatableProperties(): string[]{
-            throw new Error("Not Implemented"); // if this function isn't over-written it will throw an error.
-        }
-
-        public setProperty(propName: string, propValue: BatchRequestQueue.RequestGenerator.QueuedProperty<primitive> | primitive){
-            throw new Error("Not Implemented"); // if this function isn't over-written it will throw an error.
         }
 
         /**
@@ -32,16 +28,20 @@ namespace BatchRequestQueue {
          * @param param A value that is dependent on another request or a primitive.
          * @returns The Perceived value of param
          */
-        protected getValue(param: RequestGenerator.QueuedProperty<any> | any): any {
+        protected getValue(param: BatchRequestUtils.QueuedProperty<any> | any): any {
             this.extractPriority(param);
             return param.valueOf();
         }
 
-        protected extractPriority(param?: primitive | RequestGenerator.QueuedProperty<any>, ignore?: boolean): any {
-            if(param instanceof RequestGenerator.QueuedProperty && !ignore){
+        protected extractPriority(param?: primitive | BatchRequestUtils.QueuedProperty<any>, ignore?: boolean): any {
+            if(param instanceof BatchRequestUtils.QueuedProperty && !ignore){
                 this.maxDependentPriority = Math.max(this.maxDependentPriority, param.getPriority());
             }
             return param;
+        }
+
+        protected updateDependencies(response: any){
+            throw Error("Not Implemented");
         }
     }
 }

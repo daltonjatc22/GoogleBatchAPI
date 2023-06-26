@@ -5,16 +5,25 @@ namespace BatchCalendarApp {
             if(this.priority) throw new Error(`Unable to get value this property has a priority of ${this.priority}, please wait until after requests of priority ${this.priority} have been submitted`)
         }
     }*/
-
     export class BatchCalendar {
-        public _name?: string | BatchRequestQueue.RequestGenerator.QueuedProperty<string>;
-        public _location?: string | BatchRequestQueue.RequestGenerator.QueuedProperty<string>;
-        public _summary?: string | BatchRequestQueue.RequestGenerator.QueuedProperty<string>;
-        public _timeZone?: string | BatchRequestQueue.RequestGenerator.QueuedProperty<string>;
-        public _color?: string | BatchRequestQueue.RequestGenerator.QueuedProperty<string>;
-        public _selected?: boolean | BatchRequestQueue.RequestGenerator.QueuedProperty<boolean>;
-        constructor(){
+        public _etag?: BatchRequestUtils.QueuedProperty<string>;
+        public _name?: BatchRequestUtils.QueuedProperty<string>;
+        public _id?: BatchRequestUtils.QueuedProperty<string>;
+        public _summary?: BatchRequestUtils.QueuedProperty<string>;
+        public _accessRole?: BatchRequestUtils.QueuedProperty< "freeBusyReader" | "owner" | "reader" | "writer" >;
 
+        public _location?: BatchRequestUtils.QueuedProperty<string>;
+        public _timeZone?: BatchRequestUtils.QueuedProperty<string>;
+        public _foregroundColor?: BatchRequestUtils.QueuedProperty<string>;
+        public _backgroundColor?: BatchRequestUtils.QueuedProperty<string>;
+        public _hidden?: BatchRequestUtils.QueuedProperty<boolean>;
+        public _selected?: BatchRequestUtils.QueuedProperty<boolean>;
+
+        private _creationError?: Error;
+
+
+        constructor(creationError?: Error){
+            this._creationError = creationError;
         }
     //createAllDayEvent(title: string, date: GoogleAppsScript.Base.Date): GoogleAppsScript.Calendar.CalendarEvent;
     //createAllDayEvent(title: string, startDate: GoogleAppsScript.Base.Date, endDate: GoogleAppsScript.Base.Date): GoogleAppsScript.Calendar.CalendarEvent;
@@ -50,5 +59,9 @@ namespace BatchCalendarApp {
     //setSelected(selected: boolean): Calendar;
     //setTimeZone(timeZone: string): Calendar;
     //unsubscribeFromCalendar(): void;
+
+    private throwCreationError(){
+        throw this._creationError;
+    }
 }
 }

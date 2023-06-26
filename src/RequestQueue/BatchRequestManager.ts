@@ -72,7 +72,9 @@ namespace BatchRequestQueue {
 
       for (let i = 0; i < this.requestGenerators.length; i++) {
         const requestGenerator = this.requestGenerators[i];
-        request.requests.push(requestGenerator.GetRequest());
+        const newRequest = requestGenerator.GetRequest();
+        if(newRequest)
+          request.requests.push(newRequest);
       }
       return request;
     }

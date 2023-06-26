@@ -8,13 +8,14 @@
         "BatchRequestUtils",
             "build/BatchRequestUtils/Logger.js",
             "build/BatchRequestUtils/PromisedPriority.js",
+            "build/BatchRequestUtils/QueuedProperty.js",
+            "build/BatchRequestUtils/QueuedArray.js",
 
         "RequestQueue",
             "build/RequestQueue/BatchRequestManager.js",
             "build/RequestQueue/RequestQueue.js",
 
             "BatchRequestGenerator",
-                "build/RequestQueue/BatchRequestGenerator/QueuedProperty.js",    
                 "build/RequestQueue/BatchRequestGenerator/BatchRequestGenerator.js",
         
         "GoogleBatchAPI",
@@ -23,6 +24,7 @@
                 "build/GoogleBatchAPI/CalendarApp/CalendarApp.js",
 
                 "CalenderGenerators",
-                    "build/GoogleBatchAPI/CalendarApp/CalenderGenerators/CalendarCreationGenerator.js"
+                    "build/GoogleBatchAPI/CalendarApp/CalenderGenerators/CalendarCreationGenerator.js",
+                    "build/GoogleBatchAPI/CalendarApp/CalenderGenerators/GetCalendarByIDRequestGenerator.js"
     ]
 }

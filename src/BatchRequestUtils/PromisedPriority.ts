@@ -1,6 +1,6 @@
 namespace BatchRequestUtils {
     export class PromisedPriority<T> {
-        private _promise: Promise<T>;
+        protected _promise: Promise<T>;
         private _promiseResolve!: (value: any) => void;
         private _promiseReject!: (value: any) => void;
 
